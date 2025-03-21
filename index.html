@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shwoo03's page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    <!-- 헤더 부분 -->
+
     {% include includes/header.html %}
 
+    <main>
+        <h1>워게임 중</h1>
+    </main>
 
-    <!-- 본문 부분 -->
-    <h1>워게임 중</h1>
-
-
-
-    <!-- 푸터 부분 -->
     {% include includes/footer.html %}
+
 </body>
 </html>
