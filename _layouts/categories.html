@@ -61,53 +61,35 @@ layout: page
         <div id="{{ LIST_PREFIX }}{{ group_index }}" class="collapse show" aria-expanded="true">
           <ul class="list-group">
             {% for sub_category in sub_categories %}
-              {% assign third_categories = '' | split: '' %}
+              {% assign sub_posts = '' | split: '' %}
               {% assign sub_posts_size = 0 %}
               {% for post in posts_of_category %}
                 {% if post.categories[1] == sub_category %}
                   {% assign sub_posts_size = sub_posts_size | plus: 1 %}
-                  {% assign third_category = post.categories[2] %}
-                  {% if third_category %}
-                    {% unless third_categories contains third_category %}
-                      {% assign third_categories = third_categories | push: third_category %}
-                    {% endunless %}
-                  {% endif %}
+                  {% assign sub_posts = sub_posts | push: post %}
                 {% endif %}
               {% endfor %}
-              {% assign third_categories = third_categories | sort %}
-              {% assign third_categories_size = third_categories | size %}
 
               <li class="list-group-item">
-                <i class="far fa-folder{% if third_categories_size > 0 %}-open{% endif %} fa-fw"></i>
+                <i class="far fa-folder-open fa-fw"></i>
                 {% capture sub_category_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}
                 <a href="{{ sub_category_url | relative_url }}" class="mx-2">{{ sub_category }}</a>
                 <span class="text-muted small font-weight-light">
-                  {% if third_categories_size > 0 %}{{ third_categories_size }} 하위 분류, {% endif %}
                   {{ sub_posts_size }}
                   {% if sub_posts_size > 1 %}{{ site.data.locales[lang].categories.post_measure.plural | default: site.data.locales[lang].categories.post_measure }}{% else %}{{ site.data.locales[lang].categories.post_measure.singular | default: site.data.locales[lang].categories.post_measure }}{% endif %}
                 </span>
 
-                {% if third_categories_size > 0 %}
-                  <ul class="list-group list-group-flush mt-2">
-                    {% for third_category in third_categories %}
-                      {% assign third_posts_size = 0 %}
-                      {% for post in posts_of_category %}
-                        {% if post.categories[1] == sub_category and post.categories[2] == third_category %}
-                          {% assign third_posts_size = third_posts_size | plus: 1 %}
-                        {% endif %}
-                      {% endfor %}
-                      <li class="list-group-item ps-5">
-                        <i class="far fa-folder fa-fw"></i>
-                        {% capture third_category_url %}/categories/{{ third_category | slugify | url_encode }}/{% endcapture %}
-                        <a href="{{ third_category_url | relative_url }}" class="mx-2">{{ third_category }}</a>
-                        <span class="text-muted small font-weight-light">
-                          {{ third_posts_size }}
-                          {% if third_posts_size > 1 %}{{ site.data.locales[lang].categories.post_measure.plural | default: site.data.locales[lang].categories.post_measure }}{% else %}{{ site.data.locales[lang].categories.post_measure.singular | default: site.data.locales[lang].categories.post_measure }}{% endif %}
-                        </span>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
+                <ul class="list-group list-group-flush mt-2">
+                  {% for post in sub_posts %}
+                    <li class="list-group-item ps-5 d-flex justify-content-between">
+                      <span>
+                        <i class="far fa-file-lines fa-fw"></i>
+                        <a href="{{ post.url | relative_url }}" class="mx-2">{{ post.title }}</a>
+                      </span>
+                      <time class="text-muted small" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y/%m/%d' }}</time>
+                    </li>
+                  {% endfor %}
+                </ul>
               </li>
             {% endfor %}
           </ul>
