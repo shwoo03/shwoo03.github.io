@@ -14,3 +14,9 @@
 
 /* append your custom style below */
 @use 'notion';
+
+// Bootstrap adds `.collapsed` to nested category triggers, while Chirpy's
+// built-in script only rotates top-level category arrows.
+.subcategory-trigger.collapsed i {
+  transform: rotate(-90deg);
+}
