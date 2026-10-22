@@ -71,25 +71,39 @@ layout: page
               {% endfor %}
 
               <li class="list-group-item">
-                <i class="far fa-folder-open fa-fw"></i>
-                {% capture sub_category_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}
-                <a href="{{ sub_category_url | relative_url }}" class="mx-2">{{ sub_category }}</a>
-                <span class="text-muted small font-weight-light">
-                  {{ sub_posts_size }}
-                  {% if sub_posts_size > 1 %}{{ site.data.locales[lang].categories.post_measure.plural | default: site.data.locales[lang].categories.post_measure }}{% else %}{{ site.data.locales[lang].categories.post_measure.singular | default: site.data.locales[lang].categories.post_measure }}{% endif %}
-                </span>
+                {% assign sub_list_id = 'sub_' | append: group_index | append: '_' | append: forloop.index0 %}
+                <div class="d-flex justify-content-between align-items-center">
+                  <span>
+                    <i class="far fa-folder-open fa-fw"></i>
+                    {% capture sub_category_url %}/categories/{{ sub_category | slugify | url_encode }}/{% endcapture %}
+                    <a href="{{ sub_category_url | relative_url }}" class="mx-2">{{ sub_category }}</a>
+                    <span class="text-muted small font-weight-light">
+                      {{ sub_posts_size }}
+                      {% if sub_posts_size > 1 %}{{ site.data.locales[lang].categories.post_measure.plural | default: site.data.locales[lang].categories.post_measure }}{% else %}{{ site.data.locales[lang].categories.post_measure.singular | default: site.data.locales[lang].categories.post_measure }}{% endif %}
+                    </span>
+                  </span>
+                  <a
+                    href="#{{ sub_list_id }}"
+                    data-bs-toggle="collapse"
+                    aria-expanded="true"
+                    aria-label="{{ sub_list_id }}-trigger"
+                    class="category-trigger hide-border-bottom"
+                  ><i class="fas fa-fw fa-angle-down"></i></a>
+                </div>
 
-                <ul class="list-group list-group-flush mt-2">
-                  {% for post in sub_posts %}
-                    <li class="list-group-item ps-5 d-flex justify-content-between">
-                      <span>
-                        <i class="far fa-file-lines fa-fw"></i>
-                        <a href="{{ post.url | relative_url }}" class="mx-2">{{ post.title }}</a>
-                      </span>
-                      <time class="text-muted small" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y/%m/%d' }}</time>
-                    </li>
-                  {% endfor %}
-                </ul>
+                <div id="{{ sub_list_id }}" class="collapse show" aria-expanded="true">
+                  <ul class="list-group list-group-flush mt-2">
+                    {% for post in sub_posts %}
+                      <li class="list-group-item ps-5 d-flex justify-content-between">
+                        <span>
+                          <i class="far fa-file-lines fa-fw"></i>
+                          <a href="{{ post.url | relative_url }}" class="mx-2">{{ post.title }}</a>
+                        </span>
+                        <time class="text-muted small" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y/%m/%d' }}</time>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
               </li>
             {% endfor %}
           </ul>
