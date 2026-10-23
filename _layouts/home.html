@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<section class="post-index">
+  <div class="list-heading"><h1>전체 글 <span id="result-count" aria-live="polite">{{ site.posts.size }}</span></h1><label class="search"><span class="sr-only">글 검색</span><input id="search" type="search" placeholder="검색" autocomplete="off" data-index="{{ '/assets/js/data/search.json' | relative_url }}"></label></div>
+  <div id="results">{% assign posts = paginator.posts | default: site.posts %}{% for post in posts %}{% include blog-post-row.html post=post %}{% endfor %}</div>
+  <p class="empty" id="search-empty" hidden>검색 결과가 없습니다.</p>
+  {% if paginator.total_pages > 1 %}<nav id="pagination" class="pagination" aria-label="페이지">{% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">← 이전</a>{% endif %}<span>{{ paginator.page }} / {{ paginator.total_pages }}</span>{% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">다음 →</a>{% endif %}</nav>{% endif %}
+</section>

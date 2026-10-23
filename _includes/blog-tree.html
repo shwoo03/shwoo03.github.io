@@ -1,0 +1,19 @@
+{% assign groups = include.node.children | sort %}
+{% for group in groups %}
+  {% assign child = group[1] %}
+  {% assign folder_path = include.path | append: '/' | append: group[0] %}
+  {% assign category_url = group[0] | slugify | url_encode | prepend: '/categories/' | append: '/' %}
+  {% if group[0] == '미분류' %}{% assign category_url = '/' %}{% endif %}
+  <details class="tree-folder" data-folder="{{ folder_path | escape }}" open>
+    <summary><span class="tree-chevron" aria-hidden="true">›</span><span>{{ group[0] | escape }}</span><small>{{ group[1].count }}</small></summary>
+    <div class="tree-children">{% include blog-tree.html node=child path=folder_path limit=include.limit category_url=category_url %}</div>
+  </details>
+{% endfor %}
+{% assign post_limit = include.limit | default: include.node.posts.size %}
+{% assign latest_posts = include.node.posts | sort: 'date' | reverse %}
+{% for post in latest_posts limit:post_limit %}
+  <a class="tree-post" href="{{ post.url | relative_url }}" {% if page.url == post.url %}aria-current="page"{% endif %}><span aria-hidden="true">↳</span><span>{{ post.title | strip | escape }}</span></a>
+{% endfor %}
+{% if include.node.posts.size > post_limit %}
+  <a class="tree-more" href="{{ include.category_url | default: '/' | relative_url }}">전체 {{ include.node.posts.size }}개 보기</a>
+{% endif %}

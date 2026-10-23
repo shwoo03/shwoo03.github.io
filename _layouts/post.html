@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<div class="reader-nav"><a href="{{ '/' | relative_url }}">← 전체 글</a><span>{% assign title = page.title | strip %}{% for category in page.categories %}{% unless category == title %}{% unless forloop.first %} / {% endunless %}{{ category | escape }}{% endunless %}{% endfor %}</span></div>
+<div class="reading-layout">
+  <article class="reader"><header class="article-header"><h1>{{ page.title | strip | escape }}</h1><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time></header><div class="content article-content">{{ content }}</div></article>
+  {% if page.toc %}<aside class="toc" id="article-toc" hidden><details open><summary>목차</summary><nav aria-label="본문 목차"></nav></details></aside>{% endif %}
+</div>

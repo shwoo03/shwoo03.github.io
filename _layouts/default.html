@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'ko' }}" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+  {% include favicons.html %}
+  <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+  <script src="{{ '/assets/js/blog.js' | relative_url }}" defer></script>
+</head>
+{% include lang.html %}
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+      <button id="sidebar-toggle" class="icon-button" aria-label="사이드바 접기" aria-controls="sidebar-body" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+    </div>
+    <div id="sidebar-body">
+      <nav class="side-links" aria-label="주 메뉴">
+        <a href="{{ '/' | relative_url }}" {% if page.layout == 'home' %}aria-current="page" class="active"{% endif %}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>전체 글</span></a>
+        <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}aria-current="page" class="active"{% endif %}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span>소개</span></a>
+      </nav>
+      <h2 class="nav-heading">카테고리</h2>
+      <nav class="category-tree" aria-label="카테고리">{% include blog-tree.html node=site.data.blog_tree path='sidebar' limit=10 %}</nav>
+      <a class="github" href="https://github.com/{{ site.github.username }}">GitHub ↗</a>
+    </div>
+    <div class="sidebar-footer">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드로 전환" hidden>
+        <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.5 14a9 9 0 0 1-10.5-10.5A9 9 0 1 0 20.5 14Z"/></svg>
+        <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+        <span class="theme-label">다크 모드</span>
+      </button>
+    </div>
+  </aside>
+  <div class="site-shell">
+    <header class="content-header"><span>{% if page.layout == 'home' %}전체 글{% elsif page.layout == 'post' %}글{% else %}{% assign tab_key = page.title | downcase %}{{ site.data.locales[lang].tabs[tab_key] | default: page.title | escape }}{% endif %}</span></header>
+    <main id="main" tabindex="-1">{{ content }}</main>
+  </div>
+</body>
+</html>
