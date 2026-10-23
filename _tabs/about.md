@@ -22,7 +22,7 @@ hide_title: true
       </li>
       <li>
         <time>2026</time>
-        <h3 class="profile-role">Whitehat School 4기 Project Leader</h3>
+        <h3>Whitehat School 4기 Project Leader</h3>
       </li>
     </ol>
   </section>
