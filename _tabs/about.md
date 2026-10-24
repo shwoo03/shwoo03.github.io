@@ -42,10 +42,18 @@ hide_title: true
         <h3>CVE-2026-85922</h3>
       </li>
     </ol>
-    <p class="text-muted small">
-      <strong>BoB 프로젝트 성과</strong>
-      CVE-2026-0621 · CVE-2025-15514 · CVE-2026-25051 · CVE-2026-33665 · CVE-2026-25631 · CVE-2026-3340 · CVE-2026-3341 · CVE-2026-3357 · CVE-2026-27966 · CVE-2026-3345
-    </p>
+    <ol class="profile-records profile-records-compact">
+      <li><time>2026</time><h3>CVE-2026-0621 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2025</time><h3>CVE-2025-15514 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-25051 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-33665 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-25631 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-3340 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-3341 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-3357 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-27966 <span>BoB 프로젝트 성과</span></h3></li>
+      <li><time>2026</time><h3>CVE-2026-3345 <span>BoB 프로젝트 성과</span></h3></li>
+    </ol>
   </section>
 
   <section class="profile-section">
