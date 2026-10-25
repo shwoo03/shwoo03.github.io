@@ -16,8 +16,6 @@ timezone: Asia/Seoul
 
 title: 스우스우
 
-tagline: 보안과 개발을 공부하며 남기는 기록
-
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://xn--9t4ba122aba.site"
