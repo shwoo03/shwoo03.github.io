@@ -1,7 +1,7 @@
 ---
 title: "Explosion"
 date: 2026-10-25 00:54:00 +0900
-categories: ["Hack The Box", "Starting Point"]
+categories: ["Hack The Box", "Starting Point", "Tier 0 - Foundations"]
 tags: []
 render_with_liquid: false
 notion_id: "403eaafe-e12e-80c9-879d-fd13f8f0c1f9"

@@ -1,7 +1,7 @@
 ---
 title: "Preignition"
 date: 2026-10-25 01:18:00 +0900
-categories: ["Hack The Box", "Starting Point"]
+categories: ["Hack The Box", "Starting Point", "Tier 0 - Foundations"]
 tags: []
 render_with_liquid: false
 notion_id: "403eaafe-e12e-80cc-bfc4-cc29242f0675"
