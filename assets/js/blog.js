@@ -26,8 +26,7 @@
   });
   document.querySelectorAll('[data-folder]').forEach(folder => {
     const key = `blog-folder:${folder.dataset.folder}`;
-    folder.open = read(key) !== 'closed';
-    if (folder.querySelector('[aria-current="page"]')) folder.open = true;
+    folder.open = read(key) === 'open';
     folder.addEventListener('toggle', () => save(key, folder.open ? 'open' : 'closed'));
   });
   const toc = document.querySelector('#article-toc');
